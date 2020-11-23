@@ -1,0 +1,3 @@
+graft Apollo_20
+global-exclude *.py[cod] __pycache__ *.so *.ipynb
+recursive-exclude  Apollo_20/jupy *
