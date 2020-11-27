@@ -6,7 +6,7 @@
 
 Please document the project the better you can.
 
-# Stratup the project
+# Startup the project
 
 The initial setup.
 
@@ -61,10 +61,10 @@ Functionnal test with a script:
 ```bash
   $ cd /tmp
   $ Apollo_20-run
-``` 
+```
 
 # Continus integration
-## Github 
+## Github
 Every push of `master` branch will execute `.github/workflows/pythonpackages.yml` docker jobs.
 ## Gitlab
 Every push of `master` branch will execute `.gitlab-ci.yml` docker jobs.
