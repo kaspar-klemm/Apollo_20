@@ -1,6 +1,0 @@
-This is just a temporary file to describe how the system works:
-
-1: Data is being loaded from the directorry specified by the user using "data_loader.py"
-2: Duplicates are filtered out from the data and stored separately using "duplicate_detecter.py"
-3: Duplicate free data is augmented in "data_augmentation"
-4: Data is classified into three categores
