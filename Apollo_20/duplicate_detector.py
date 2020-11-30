@@ -31,7 +31,7 @@ def dhash(image, hashSize=8):
     return sum([2 ** i for (i, v) in enumerate(diff.flatten()) if v])
 
 #FUNCTION TO GIVE HASH TO EACH PICTURE IN DIRECTORY
-def duplicate_detector(filenames, folder_path):
+def duplicate_detector(folder_path):
     hashes = {}
     # loop over our image paths
     filenames = file_selector(folder_path)
@@ -53,7 +53,6 @@ def duplicate_detector(filenames, folder_path):
             liste_first_picture.append(value[0])
     os.mkdir(f"{folder_path}/duplicate_folder")
     duplicate_folder = os.path.abspath(f"{folder_path}/duplicate_folder")
-    print(liste_duplicates)
     for liste in liste_duplicates:
         for picture in liste:
             os.replace(f"{picture}", f"{duplicate_folder}/{picture.rsplit('/', 1)[-1]}")
