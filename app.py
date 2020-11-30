@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 
+
 st.markdown("""# Picture Recognition System
 ## Apollo_20
 Welcome to your Storage Space Generator""")
@@ -36,6 +37,8 @@ if st.button(' 🎈🎈Start Scan 🎈🎈'):
     print ('Access granted')
     st.write('''Your Images are being scanned. This may take up to 2 minutes
     depending on the amount of Data. Lean back and we'll do the magic for you.''')
+    st
+
 
 if st.checkbox('Show progress bar'):
     import time
@@ -70,7 +73,7 @@ if st.checkbox('Show progress bar'):
 def get_select_box_data():
     print('get_select_box_data called')
     return pd.DataFrame({
-          'Category': ("Dublicates", "Screenshots", "Similar Pictures"),
+          'Category': ("Duplicates", "Screenshots", "Similar Pictures"),
           'Number of pictures detected': ("n"),
           'Used Data Capacity': ("n MB")
         })
