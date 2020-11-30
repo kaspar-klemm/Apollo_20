@@ -1,6 +1,9 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
+from Apollo_20.duplicate_detector import duplicate_detector
+from Apollo_20.dl_model_predictor import categoriser
+
 
 
 st.markdown("""# Picture Recognition System
@@ -26,18 +29,29 @@ if st.checkbox('interested in the Process?'):
 if st.checkbox('Allow Access & choose Images'):
     st.set_option('deprecation.showfileUploaderEncoding', False)
 
-    uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
+    #image_filepath = st.text_input("Please enter filepath where pictures are stored")
+    #uploaded_files = st.file_uploader("Multiple File Uploader", type="png", "jpg", "jpeg", accept_multiple_files = True)
 
-    if uploaded_file is not None:
-        data = pd.read_csv(uploaded_file)
-        st.write(data)
+    #if uploaded_file is not None:
+        #data = pd.read_csv(uploaded_file)
+        #st.write(data)
+
+    def file_selector(folder_path):
+        filenames = []
+        for image in os.listdir(folder_path):
+            filenames.append(os.path.abspath(image))
+        return filenames
+
+    folder_path = st.text_input("Enter folder path")
+    filename = file_selector(folder_path = folder_path)
+    st.write("You selected '%s' " % filename)
 
 if st.button(' 🎈🎈Start Scan 🎈🎈'):
     st.balloons()
     print ('Access granted')
     st.write('''Your Images are being scanned. This may take up to 2 minutes
     depending on the amount of Data. Lean back and we'll do the magic for you.''')
-    st
+    st.write(categoriser(filenames))
 
 
 if st.checkbox('Show progress bar'):

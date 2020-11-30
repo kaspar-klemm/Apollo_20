@@ -3,17 +3,18 @@
 #IMPORTS
 import os
 from PIL import Image
-from tensorflow.keras import
+import tensorflow.keras
 import cv2
 import numpy as np
 
 #LOAD PICTURES
 
-def picture_list(directory):
-    picture_list=[]
-    for picture in os.listdir(directory):
-        picture_list.append(Image.open(picture))
-    return picture_list
+def file_selector(folder_path):
+    filenames = []
+    for image in os.listdir(folder_path):
+        if image[-3:] == 'jpg' or image[-3:] == 'png' or image[-4:] == 'jpeg':
+            filenames.append(os.path.abspath(folder_path + "/" + image))
+    return filenames
 
 #CREATE HASING FUNCTION TO GIVE SAME PICTURE THE SAME HASH
 
@@ -30,10 +31,11 @@ def dhash(image, hashSize=8):
     return sum([2 ** i for (i, v) in enumerate(diff.flatten()) if v])
 
 #FUNCTION TO GIVE HASH TO EACH PICTURE IN DIRECTORY
-def duplicate_detector(directory):
+def duplicate_detector(filenames, folder_path):
     hashes = {}
     # loop over our image paths
-    for imagePath in os.listdir(directory):
+    filenames = file_selector(folder_path)
+    for imagePath in filenames:
         # load the input image and compute the hash
         image = cv2.imread(imagePath)
         h = dhash(image)
@@ -49,10 +51,13 @@ def duplicate_detector(directory):
             liste_duplicates.append(value[1:])
         else:
             liste_first_picture.append(value[0])
-    os.mkdir("duplicate_folder")
+    os.mkdir(f"{folder_path}/duplicate_folder")
+    duplicate_folder = os.path.abspath(f"{folder_path}/duplicate_folder")
+    print(liste_duplicates)
     for liste in liste_duplicates:
         for picture in liste:
-            os.replace(f"{image_folder}/{picture}", f"{duplicate_folder}/{picture}")
+            os.replace(f"{picture}", f"{duplicate_folder}/{picture.rsplit('/', 1)[-1]}")
+
 
 
 
