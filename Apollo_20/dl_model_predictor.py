@@ -5,7 +5,6 @@
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from PIL import Image
 from tensorflow.keras.preprocessing.image import img_to_array
-import matplotlib.pyplot as plt
 import numpy as np
 import os
 import cv2
