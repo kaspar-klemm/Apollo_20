@@ -9,3 +9,17 @@ black
 yapf
 python-gitlab
 twine
+tensorflow.keras.preprocessing.image.ImageDataGenerator
+IL.Image
+tensorflow.keras.preprocessing.image.img_to_array
+matplotlib.pyplot as plt
+numpy as np
+os
+cv2
+shutil
+tensorflow as tf
+tensorflow.keras.optimizers
+tensorflow.keras.callbacks
+tensorflow.keras.Sequential
+tensorflow.keras.layers
+tensorflow.keras.models.Model
