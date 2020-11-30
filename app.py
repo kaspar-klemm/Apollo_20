@@ -1,9 +1,6 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-from Apollo_20.duplicate_detector import duplicate_detector
-from Apollo_20.dl_model_predictor import categoriser
-
 
 
 st.markdown("""# Picture Recognition System
@@ -36,23 +33,15 @@ if st.checkbox('Allow Access & choose Images'):
         #data = pd.read_csv(uploaded_file)
         #st.write(data)
 
-    def file_selector(folder_path):
-        filenames = []
-        for image in os.listdir(folder_path):
-            filenames.append(os.path.abspath(image))
-        return filenames
 
-    folder_path = st.text_input("Enter folder path")
-    filename = file_selector(folder_path = folder_path)
-    st.write("You selected '%s' " % filename)
+    folder_path = st.text_input("Enter folder path where your pictures are stored")
 
 if st.button(' 🎈🎈Start Scan 🎈🎈'):
     st.balloons()
     print ('Access granted')
     st.write('''Your Images are being scanned. This may take up to 2 minutes
     depending on the amount of Data. Lean back and we'll do the magic for you.''')
-    st.write(categoriser(filenames))
-
+    st.write(duplicate_detector(folder_path))
 
 if st.checkbox('Show progress bar'):
     import time
