@@ -9,7 +9,6 @@ black
 yapf
 python-gitlab
 twine
-IL.Image
 matplotlib.pyplot
 numpy
 os
