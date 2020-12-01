@@ -4,6 +4,7 @@ import pandas as pd
 from tensorflow.keras.models import load_model
 from Apollo_20.duplicate_detector import duplicate_detector
 from Apollo_20.dl_model_predictor import image_categoriser
+from Apollo_20.cosine_similarity import execute
 
 print(dir())
 
@@ -31,14 +32,16 @@ if st.checkbox('Allow Access & choose Images'):
     st.set_option('deprecation.showfileUploaderEncoding', False)
 
     #image_filepath = st.text_input("Please enter filepath where pictures are stored")
-    #uploaded_files = st.file_uploader("Multiple File Uploader", type="png", "jpg", "jpeg", accept_multiple_files = True)
+    #uploaded_files = st.file_uploader("Multiple File Uploader", type="png", accept_multiple_files = True)
 
-    #if uploaded_file is not None:
-        #data = pd.read_csv(uploaded_file)
-        #st.write(data)
+    #if uploaded_files is not None:
+        #save_path = st.write(os.getcwd())
+        #for files in uploaded_files:
+            #complete_name = save_path + files
+            #file1 = open(completeName)
+            #file1.close()
 
-
-    folder_path = st.text_input("Enter folder path where your pictures are stored")
+    folder_path = "IMAGES"
 
 if st.button(' 🎈🎈Start Scan 🎈🎈'):
     st.balloons()
@@ -49,6 +52,8 @@ if st.button(' 🎈🎈Start Scan 🎈🎈'):
     st.write(duplicate_detector(folder_path=folder_path))
 
     st.write(image_categoriser(folder_path=folder_path))
+
+    st.write(execute(folder_path=folder_path))
 
 if st.checkbox('Show progress bar'):
     import time

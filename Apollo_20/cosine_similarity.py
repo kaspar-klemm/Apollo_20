@@ -76,11 +76,25 @@ def liste_similar_pictures(dictionary):
   return liste
 
 def execute(folder_path):
-    files=file_selector(folder_path)
-    vector_liste=get_vectors(files)
-    similarity_dict=similarity_detection(vector_liste, files)
-    liste_sim=liste_similar_pictures(similarity_dict)
-    os.mkdir(f"{folder_path}/similar_pictures_folder")
-    similar_pictures_folder = os.path.abspath(f"{folder_path}/similar_pictures_folder")
-    for picture in liste_sim:
-        os.replace(f"{picture}", f"{similar_pictures_folder}/{picture.rsplit('/', 1)[-1]}")
+  files=file_selector(folder_path)
+  vector_liste=get_vectors(files)
+  similarity_dict=similarity_detection(vector_liste, files)
+  liste_sim=liste_similar_pictures(similarity_dict)
+  os.mkdir(f"{folder_path}/similar_pictures_folder")
+  similar_pictures_folder = f"{folder_path}/similar_pictures_folder"
+  for picture in liste_sim:
+    try:
+      os.replace(f"{picture}", f"{similar_pictures_folder}/{picture.rsplit('/', 1)[-1]}")
+    except FileNotFoundError:
+      pass
+
+  list_similar_pictures = os.listdir(similar_pictures_folder)
+  number_of_similiar_pictures = len(list_similar_pictures)
+
+  statement = f"""{number_of_similiar_pictures} pictures with similarities have been\n
+          detected and saved in the 'Similar Pictures' folder"""
+
+  return statement
+
+
+

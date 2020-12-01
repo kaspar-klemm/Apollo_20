@@ -88,14 +88,15 @@ def image_categoriser(folder_path):
   list_normale_bilder = os.listdir(folder_path)
   number_of_normale_bilder = len(list_normale_bilder)
 
-  statement = f"All pictures have been categorised into three folders:\
-          categorised_as_screenshot: {number_of_screenshots} \
-          categorised_as_notes: {number_of_notes}\
-          categorised_as_normale_bilder: {number_of_normale_bilder}"
+  statement = f"""All pictures have been categorised into three folders:\n
+
+          categorised as screenshot: {number_of_screenshots} \n
+          categorised as notes: {number_of_notes}\n
+          normal pictures: {number_of_normale_bilder}"""
+
 
   return statement
 
-  #categoriser(user_image_paths)
 
 
 
