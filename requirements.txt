@@ -10,7 +10,7 @@ yapf
 python-gitlab
 twine
 matplotlib
-numpy
+numpy==1.16.0
 opencv-python
 Pillow
 tensorflow
