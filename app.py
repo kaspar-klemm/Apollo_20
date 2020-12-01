@@ -43,16 +43,15 @@ if st.checkbox('Allow Access & choose Images'):
 
     folder_path = "IMAGES"
 
-if st.button(' 🎈🎈Start Scan 🎈🎈'):
+if st.button('Press to filter out duplicates'):
     st.balloons()
-    print ('Access granted')
-    st.write('''Your Images are being scanned. This may take up to 2 minutes
-    depending on the amount of Data. Lean back and we'll do the magic for you.''')
-
+    st.write('''Your Images are being scanned for duplicates''')
     st.write(duplicate_detector(folder_path=folder_path))
 
+if st.button('Press to filter out screenshots and pcitures of notes and documents')
     st.write(image_categoriser(folder_path=folder_path))
 
+if st.button('Press to create folders with similar picutres')
     st.write(execute(folder_path=folder_path))
 
 if st.checkbox('Show progress bar'):

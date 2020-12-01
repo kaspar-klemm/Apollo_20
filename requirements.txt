@@ -12,7 +12,6 @@ twine
 matplotlib
 numpy
 opencv-python
-shutil
 PIL
 tensorflow
 sklearn
