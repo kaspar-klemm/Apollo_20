@@ -1,7 +1,11 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
+from tensorflow.keras.models import load_model
+from Apollo_20.duplicate_detector import duplicate_detector
+from Apollo_20.dl_model_predictor import image_categoriser
 
+print(dir())
 
 st.markdown("""# Picture Recognition System
 ## Apollo_20
@@ -41,7 +45,10 @@ if st.button(' 🎈🎈Start Scan 🎈🎈'):
     print ('Access granted')
     st.write('''Your Images are being scanned. This may take up to 2 minutes
     depending on the amount of Data. Lean back and we'll do the magic for you.''')
-    st.write(duplicate_detector(folder_path))
+
+    st.write(duplicate_detector(folder_path=folder_path))
+
+    st.write(image_categoriser(folder_path=folder_path))
 
 if st.checkbox('Show progress bar'):
     import time
@@ -52,7 +59,7 @@ if st.checkbox('Show progress bar'):
 
     for i in range(100):
         # Update the progress bar with each iteration.
-        latest_iteration.text(f'Sacnning {i+1} %')
+        latest_iteration.text(f'Scanning {i+1} %')
         bar.progress(i + 1)
         time.sleep(0.1)
 

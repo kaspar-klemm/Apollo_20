@@ -9,8 +9,10 @@ import numpy as np
 import os
 import cv2
 import shutil
+import tensorflow as tf
+from tensorflow.keras import models
 
-image_folder = input("File path of picture folder please")
+#image_folder = input("File path of picture folder please")
 
 # image_folder = "/content/gdrive/MyDrive/Apollo_20/More_Data/TEST_DATA"
 
@@ -33,11 +35,9 @@ def image_4d_array(image_path):
 #FUNCTION TO PREDICT TYPE OF PICTURE WITH IMPORTED MODEL
 PIC_TYPE_LIST = ["NORMALE_BILDER", "NOTES", "SCREENSHOT"]
 
-model_file_path = input("File path of classification model please")
-#model_file_path = "content/gdrive/MyDrive/Apollo_20/saved_model.h5"
-model = load_model(model_file_path)
+#model_file_path = input("File path of classification model please")
 
-def predict_category(pics_as_arrays, model=model, categories_list=PIC_TYPE_LIST):
+def predict_category(pics_as_arrays, model, categories_list=PIC_TYPE_LIST):
     prediction = model.predict(pics_as_arrays)
     return categories_list[np.argmax(prediction)]
 
@@ -46,32 +46,46 @@ def predict_category(pics_as_arrays, model=model, categories_list=PIC_TYPE_LIST)
 #this function creates three new folders in the current directory and makes copies
 # of the pictures, placing them in one of the three folders
 
-def categoriser(user_image_paths):
-  current_directory = os.getcwd()
-  os.mkdir("categorised_as_screenshot")
-  os.mkdir("categorised_as_notes")
-  os.mkdir("categorised_as_normal_bilder")
-  filepath_screenshots = (str(current_directory).strip("[]").strip("''") + "/" + "categorised_as_screenshot").strip("''")
-  filepath_notes = (str(current_directory).strip("[]").strip("''") + "/" + "categorised_as_notes").strip("''")
-  filepath_normal = (str(current_directory).strip("[]").strip("''") + "/" + "categorised_as_normal_bilder").strip("''")
-  for path in user_image_paths:
+def file_selector(folder_path):
+    filenames = []
+    for image in os.listdir(folder_path):
+        if image[-3:] == 'jpg' or image[-3:] == 'png' or image[-4:] == 'jpeg':
+            filenames.append(os.path.abspath(folder_path + "/" + image))
+    return filenames
+
+
+def image_categoriser(folder_path):
+
+  MODEL_PATH = "/Users/kaspar_klemm/code/kaspar-klemm/Apollo_20/Apollo_20/classification_model/saved_model/saved_model.h5"
+
+  model = tf.keras.models.load_model(MODEL_PATH)
+
+  filenames = file_selector(folder_path)
+
+  os.mkdir(f"{folder_path}/categorised_as_screenshot")
+  os.mkdir(f"{folder_path}/categorised_as_notes")
+
+  filepath_screenshots = f"{folder_path}/categorised_as_screenshot"
+  filepath_notes = f"{folder_path}/categorised_as_notes"
+  filepath_normal = f"{folder_path}/categorised_as_normal_pictures"
+  for path in filenames:
     image = image_4d_array(path)
     if image is None:
       pass
-    elif predict_category(image) == "SCREENSHOT":
-     shutil.copyfile(path, filepath_screenshots + "/" + path)
-    elif predict_category(image) == "NOTES":
-     shutil.copyfile(path, filepath_notes + "/" + path)
-    elif predict_category(image) == "NORMALE_BILDER":
-     shutil.copyfile(path, filepath_normal + "/" + path)
+    elif predict_category(image, model) == "SCREENSHOT":
+     #shutil.copyfile(path, filepath_screenshots + "/" + path)
+     os.replace(f"{path}", f"{filepath_screenshots}/{path.rsplit('/', 1)[-1]}")
+    elif predict_category(image, model) == "NOTES":
+     #shutil.copyfile(path, filepath_notes + "/" + path)
+     os.replace(f"{path}", f"{filepath_notes}/{path.rsplit('/', 1)[-1]}")
 
-  list_screenshots = os.listdir("categorised_as_screenshot")
+  list_screenshots = os.listdir(filepath_screenshots)
   number_of_screenshots = len(list_screenshots)
 
-  list_notes = os.listdir("categorised_as_notes")
+  list_notes = os.listdir(filepath_notes)
   number_of_notes = len(list_notes)
 
-  list_normale_bilder = os.listdir("categorised_as_normal_bilder")
+  list_normale_bilder = os.listdir(folder_path)
   number_of_normale_bilder = len(list_normale_bilder)
 
   statement = f"All pictures have been categorised into three folders:\
