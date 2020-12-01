@@ -24,7 +24,7 @@ tensorflow.keras.Sequential
 tensorflow.keras.layers
 tensorflow.keras.models.Model
 os
-PIL import Image
+PIL.Image
 tensorflow.keras
 PIL.ImageFile
 sklearn.metrics.pairwise.cosine_similarity
