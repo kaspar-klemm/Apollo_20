@@ -11,7 +11,7 @@ python-gitlab
 twine
 matplotlib
 numpy==1.16.4
-opencv-python
+opencv-contrib-python
 Pillow
 tensorflow-cpu
 sklearn
