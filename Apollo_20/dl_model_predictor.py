@@ -79,10 +79,10 @@ def image_categoriser(folder_path):
      #shutil.copyfile(path, filepath_notes + "/" + path)
      os.replace(f"{path}", f"{filepath_notes}/{path.rsplit('/', 1)[-1]}")
 
-  list_screenshots = os.listdir("filepath_screenshots")
+  list_screenshots = os.listdir(filepath_screenshots)
   number_of_screenshots = len(list_screenshots)
 
-  list_notes = os.listdir("filepath_notes")
+  list_notes = os.listdir(filepath_notes)
   number_of_notes = len(list_notes)
 
   list_normale_bilder = os.listdir(folder_path)
