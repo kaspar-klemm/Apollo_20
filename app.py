@@ -41,7 +41,7 @@ if st.checkbox('Allow Access & choose Images'):
             #file1 = open(completeName)
             #file1.close()
 
-    folder_path = "IMAGES"
+    folder_path = st.text_input("Please enter your folder here")
 
 if st.button('Press to filter out duplicates'):
     st.balloons()
