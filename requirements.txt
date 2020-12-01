@@ -12,12 +12,12 @@ twine
 tensorflow.keras.preprocessing.image.ImageDataGenerator
 IL.Image
 tensorflow.keras.preprocessing.image.img_to_array
-matplotlib.pyplot as plt
-numpy as np
+matplotlib.pyplot
+numpy
 os
 cv2
 shutil
-tensorflow as tf
+tensorflow
 tensorflow.keras.optimizers
 tensorflow.keras.callbacks
 tensorflow.keras.Sequential
@@ -26,10 +26,8 @@ tensorflow.keras.models.Model
 os
 PIL import Image
 tensorflow.keras
-numpy as np
-matplotlib.pyplot as plt
 PIL.ImageFile
-sklearn.metrics.pairwise.cosine_similarity as cs
+sklearn.metrics.pairwise.cosine_similarity
 tensorflow.keras.applications.mobilenet_v2.MobileNetV2
 tensorflow.keras.applications.mobilenet_v2.preprocess_input
 streamlit==0.65.2
