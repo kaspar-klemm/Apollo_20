@@ -48,10 +48,10 @@ if st.button('Press to filter out duplicates'):
     st.write('''Your Images are being scanned for duplicates''')
     st.write(duplicate_detector(folder_path=folder_path))
 
-if st.button('Press to filter out screenshots and pcitures of notes and documents')
+if st.button('Press to filter out screenshots and pictures of notes and documents'):
     st.write(image_categoriser(folder_path=folder_path))
 
-if st.button('Press to create folders with similar picutres')
+if st.button('Press to create folders with similar picutres'):
     st.write(execute(folder_path=folder_path))
 
 if st.checkbox('Show progress bar'):
