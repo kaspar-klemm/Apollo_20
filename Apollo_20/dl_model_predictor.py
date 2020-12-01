@@ -56,7 +56,7 @@ def file_selector(folder_path):
 
 def image_categoriser(folder_path):
 
-  MODEL_PATH = "/Users/kaspar_klemm/code/kaspar-klemm/Apollo_20/Apollo_20/classification_model/saved_model/saved_model.h5"
+  MODEL_PATH = "Apollo_20/classification_model/saved_model"
 
   model = tf.keras.models.load_model(MODEL_PATH)
 
