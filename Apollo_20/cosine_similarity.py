@@ -91,8 +91,8 @@ def execute(folder_path):
   list_similar_pictures = os.listdir(similar_pictures_folder)
   number_of_similiar_pictures = len(list_similar_pictures)
 
-  statement = f"""{number_of_similiar_pictures} pictures with similarities have been\n
-          detected and saved in the 'Similar Pictures' folder"""
+  statement = f"""All similar pictures have been detected and placed in the similar pictures folder.\n
+  Similar pictures: {number_of_similiar_pictures}"""
 
   return statement
 

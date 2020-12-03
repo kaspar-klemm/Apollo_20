@@ -57,6 +57,14 @@ def duplicate_detector(folder_path):
         for picture in liste:
             os.replace(f"{picture}", f"{duplicate_folder}/{picture.rsplit('/', 1)[-1]}")
 
+    list_duplicates = os.listdir(duplicate_folder)
+    number_of_duplicates = len(list_duplicates)
+
+    statement = f"""All duplicates have been filtered out.\n
+
+          Duplicates: {number_of_duplicates}"""
+
+    return statement
 
 
 
