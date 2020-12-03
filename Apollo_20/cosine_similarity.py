@@ -18,7 +18,7 @@ model = MobileNetV2(weights = "imagenet", include_top = True, input_shape = (224
 def file_selector(folder_path):
     filenames = []
     for image in os.listdir(folder_path):
-        if image[-3:] == 'jpg' or image[-3:] == 'png' or image[-4:] == 'jpeg':
+        if image[-3:] == 'jpg' or image[-3:] == 'png' or image[-4:] == 'jpeg' or image[-3:] == 'JPG' or image[-3:] == 'PNG' or image[-4:] == 'JPEG':
             filenames.append(os.path.abspath(folder_path + "/" + image))
     return filenames
 
@@ -54,7 +54,7 @@ def similarity_detection(vectors, files):
       pass
     else:
   #wir suchen nach dem index der Bilder die ähnlich zu dem jetzigen Bild (der Iteration) ist
-      index_list=[index for index in range(len(row)) if row[index] >= 0.3]
+      index_list=[index for index in range(len(row)) if row[index] >= 0.9]
       #print(index_list)
   #skip.append index
       liste_pairs=[]

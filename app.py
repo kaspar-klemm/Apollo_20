@@ -12,9 +12,6 @@ st.markdown("""# Picture Recognition System
 ## Apollo_20
 Welcome to your Storage Space Generator""")
 
-st.sidebar.markdown(f"""
-    # Header Resizer
-    """)
 
 if st.checkbox('interested in the Founders?'):
     st.write('''
@@ -31,71 +28,35 @@ if st.checkbox('interested in the Process?'):
 if st.checkbox('Allow Access & choose Images'):
     st.set_option('deprecation.showfileUploaderEncoding', False)
 
-    #image_filepath = st.text_input("Please enter filepath where pictures are stored")
-    #uploaded_files = st.file_uploader("Multiple File Uploader", type="png", accept_multiple_files = True)
+    #multiple_files = st.file_uploader(
+    #"Multiple File Uploader",
+    #accept_multiple_files=True)
 
-    #if uploaded_files is not None:
-        #save_path = st.write(os.getcwd())
-        #for files in uploaded_files:
-            #complete_name = save_path + files
-            #file1 = open(completeName)
-            #file1.close()
+    #filenames = []
+    #for file in multiple_files:
+        #filenames.append(f"{file.name}")
+        #image = file.read()
+        #st.write(print(type(image)))
+        #file_container = st.beta_expander(
+        #f"File name: {file.name} ({file.size}b)")
+        #file_container.write(file.getvalue())
+        #st.write(print(filenames))
 
     folder_path = st.text_input("Please enter your folder here")
 
 if st.button('Press to filter out duplicates'):
     st.balloons()
     st.write('''Your Images are being scanned for duplicates''')
-    st.write(duplicate_detector(folder_path=folder_path))
 
-if st.button('Press to filter out screenshots and pictures of notes and documents'):
-    st.write(image_categoriser(folder_path=folder_path))
+    st.write(duplicate_detector(folder_path=folder_path))
+    st.success('Images successfully scanned')
 
 if st.button('Press to create folders with similar picutres'):
+
     st.write(execute(folder_path=folder_path))
+    st.success('Images successfully scanned')
 
-if st.checkbox('Show progress bar'):
-    import time
+if st.button('Press to filter out screenshots and pictures of notes and documents'):
 
-    # Add a placeholder
-    latest_iteration = st.empty()
-    bar = st.progress(0)
-
-    for i in range(100):
-        # Update the progress bar with each iteration.
-        latest_iteration.text(f'Scanning {i+1} %')
-        bar.progress(i + 1)
-        time.sleep(0.1)
-
-    if st.success('Images successfully scanned'):
-        @st.cache
-        def get_histo():
-            print('get_histo called')
-            df = pd.DataFrame(
-                    np.random.randn(100, 1),
-                    columns=['a']
-                )
-
-            return np.histogram(
-                df.a, bins=3)[0]
-
-        hist_values = get_histo()
-
-        st.bar_chart(hist_values)
-
-@st.cache
-def get_select_box_data():
-    print('get_select_box_data called')
-    return pd.DataFrame({
-          'Category': ("Duplicates", "Screenshots", "Similar Pictures"),
-          'Number of pictures detected': ("n"),
-          'Used Data Capacity': ("n MB")
-        })
-
-df = get_select_box_data()
-
-option = st.selectbox('Select a category to filter', df['Category'])
-
-filtered_df = df[df['Category'] == option]
-
-st.write(filtered_df)
+    st.write(image_categoriser(folder_path=folder_path))
+    st.success('Images successfully scanned')

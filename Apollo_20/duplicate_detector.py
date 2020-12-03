@@ -12,7 +12,7 @@ import numpy as np
 def file_selector(folder_path):
     filenames = []
     for image in os.listdir(folder_path):
-        if image[-3:] == 'jpg' or image[-3:] == 'png' or image[-4:] == 'jpeg':
+        if image[-3:] == 'jpg' or image[-3:] == 'png' or image[-4:] == 'jpeg' or image[-3:] == 'JPG' or image[-3:] == 'PNG' or image[-4:] == 'JPEG':
             filenames.append(os.path.abspath(folder_path + "/" + image))
     return filenames
 
